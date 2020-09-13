@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>WTForms!</title>
+</head>
+<body>
+<h1>Our Form will be here!</h1>
+<form method="POST" action="{{ url_for('form') }}">
+	{{ form.csrf_token }}
+	{{ form.username.label }}
+	{{ form.username }}
+	<ul>
+	{% for error in form.username.error %}
+		<li style="color:red;">{{error}}</li>
+	{% endfor %}
+	</ul>
+	{{ form.password.label }}
+	{{ form.password }}
+	{% for error in form.username.error %} 
+	<ul>			
+		<li style="color:red;">{{error}}</li>
+	{% endfor %}
+	</ul>
+    {{ form.recaptcha }}
+	<input type="submit" value="Login">
+</form>
+<div class="container">
+	{% for message in get_flashed_messages() %}
+	<div class="alert alert-warning">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	{{ message }}
+	</div>
+	{% endfor %}
+</div>
+</body>
+</html>  
